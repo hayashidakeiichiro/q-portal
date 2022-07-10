@@ -1,9 +1,24 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view />
+  <div>
+    <div>header</div>
+
+    <div class="container">
+      <div class="row">
+        <!-- maincolumn-->
+        <div class="col-sm-12 col-md-8 bg-info">
+          <nav>
+            <router-link to="/">Top</router-link> |
+            <router-link to="/news">News</router-link> |
+            <router-link to="/dining">Dining</router-link> |
+            <router-link to="/traffic">traffic</router-link> |
+          </nav>
+          <router-view />
+        </div>
+        <!-- sidecolumn-->
+        <div class="col-sm-12 col-md-4 bg-info">aa</div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style>
