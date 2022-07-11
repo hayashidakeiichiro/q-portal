@@ -12,7 +12,13 @@
       {{ temperture.max }}
       {{ temperture.min }}
     </div>
-    <div style="height: 200px">お知らせ</div>
+    <div style="height: 200px">
+      <ul>
+        <li v-for="(news, key) in newsList" :key="key">
+          <p>{{ news }}</p>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -23,6 +29,7 @@ export default {
     return {
       WeatherCode: 0, // 天気のアイコン読み込みのためのWeatherCode
       temperture: { max: 0, min: 0 },
+      newsList: { 1: 1, 2: 2, 3: 3 },
     };
   },
   created() {
