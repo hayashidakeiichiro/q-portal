@@ -1,11 +1,19 @@
 <template>
   <div>
-    <div>header</div>
-
+    <!-- header -->
+    <div class="container" style="height: 80px">
+      <div class="row">
+        <div class="col-3">
+          <img src="@/assets/logo2.png" alt="" class="w-100" />
+        </div>
+        <div class="col-6">loginform</div>
+      </div>
+    </div>
+    <!-- main -->
     <div class="container">
       <div class="row">
         <!-- maincolumn-->
-        <div class="col-sm-12 col-md-8 bg-info">
+        <div class="col-sm-12 col-md-9">
           <nav>
             <router-link to="/">Top</router-link> |
             <router-link to="/news">News</router-link> |
@@ -15,11 +23,24 @@
           <router-view />
         </div>
         <!-- sidecolumn-->
-        <div class="col-sm-12 col-md-4 bg-info">aa</div>
+        <div class="col-sm-12 col-md-3">
+          <Links />
+        </div>
       </div>
     </div>
   </div>
 </template>
+<script>
+// @ is an alias to /src
+import Links from "@/components/RelatedLinks.vue";
+
+export default {
+  name: "HomeView",
+  components: {
+    Links,
+  },
+};
+</script>
 
 <style>
 #app {
