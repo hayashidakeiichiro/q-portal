@@ -1,14 +1,9 @@
 <template>
-  <div>
+  <div class="App">
     <!-- header -->
-    <div class="container" style="height: 80px">
-      <div class="row">
-        <div class="col-3">
-          <img src="@/assets/logo2.png" alt="" class="w-100" />
-        </div>
-        <div class="col-6">loginform</div>
-      </div>
-    </div>
+    <header class="container" style="height: 80px">
+      <HeaderComponent />
+    </header>
     <!-- main -->
     <div class="container">
       <div class="row">
@@ -23,21 +18,23 @@
           <router-view />
         </div>
         <!-- sidecolumn-->
-        <div class="col-sm-12 col-md-3">
-          <Links />
-        </div>
+        <nav class="col-sm-12 col-md-3">
+          <RelatedLinks />
+        </nav>
       </div>
     </div>
   </div>
 </template>
 <script>
 // @ is an alias to /src
-import Links from "@/components/RelatedLinks.vue";
+import RelatedLinks from "@/components/RelatedLinks.vue";
+import HeaderComponent from "@/components/HeaderComponent.vue";
 
 export default {
   name: "HomeView",
   components: {
-    Links,
+    RelatedLinks,
+    HeaderComponent,
   },
 };
 </script>
