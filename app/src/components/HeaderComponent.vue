@@ -9,7 +9,7 @@
 </template>
 <style lang="scss" scoped>
 .Header {
-  height: 80px;
+  height: 100%;
   display: flex;
   &__img {
     height: 100%;
