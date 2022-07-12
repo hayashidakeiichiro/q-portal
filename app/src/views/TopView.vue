@@ -1,9 +1,10 @@
 <template>
   <div class="top">
     <div>
-      <img alt="Vue logo" src="../assets/logo.png" />
+      <img alt="logo" src="../assets/logo.png" />
     </div>
-    <div style="height: 200px">
+    <section style="height: 200px">
+      <h1>今日の天気</h1>
       <img
         :src="require(`@/../src/assets/WeatherImg/${this.WeatherCode}.jpg`)"
         alt=""
@@ -11,14 +12,15 @@
       />
       {{ temperture.max }}
       {{ temperture.min }}
-    </div>
-    <div style="height: 200px">
-      <ul>
-        <li v-for="(news, key) in newsList" :key="key">
+    </section>
+    <section style="height: 200px">
+      <h1>新着情報</h1>
+      <ul class="list-group">
+        <li v-for="(news, key) in newsList" :key="key" class="list-group-item">
           <p>{{ news }}</p>
         </li>
       </ul>
-    </div>
+    </section>
   </div>
 </template>
 
@@ -27,7 +29,7 @@ export default {
   name: "TopView",
   data: function () {
     return {
-      WeatherCode: 0, // 天気のアイコン読み込みのためのWeatherCode
+      WeatherCode: "none", // 天気のアイコン読み込みのためのWeatherCode
       temperture: { max: 0, min: 0 },
       newsList: { 1: 1, 2: 2, 3: 3 },
     };
