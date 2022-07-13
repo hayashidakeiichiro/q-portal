@@ -1,9 +1,9 @@
 <template>
-  <div class="top">
-    <div>
-      <img alt="logo" src="../assets/logo.png" />
+  <div class="TopPage">
+    <div class="TopPage__top">
+      <img src="../assets/topimg.jpeg" alt="" class="TopPage__topImg" />
     </div>
-    <section style="height: 200px">
+    <section class="TopPage__weather">
       <h1>今日の天気</h1>
       <img
         :src="require(`@/../src/assets/WeatherImg/${this.WeatherCode}.jpg`)"
@@ -13,7 +13,7 @@
       {{ temperture.max }}
       {{ temperture.min }}
     </section>
-    <section style="height: 200px">
+    <section class="TopPage__newInfo">
       <h1>新着情報</h1>
       <ul class="list-group">
         <li v-for="(news, key) in newsList" :key="key" class="list-group-item">
@@ -51,3 +51,12 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+.TopPage {
+  &__top {
+  }
+  &__topImg {
+    width: 100%;
+  }
+}
+</style>

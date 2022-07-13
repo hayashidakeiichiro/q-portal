@@ -7,13 +7,7 @@
     <!-- main -->
     <div class="App__body">
       <div class="App__main">
-        <nav class="App__nav">
-          <router-link to="/">Top</router-link> |
-          <router-link to="/news">News</router-link> |
-          <router-link to="/dining">Dining</router-link> |
-          <router-link to="/traffic">traffic</router-link> |
-        </nav>
-        <router-view />
+        <NavigationComponent />
       </div>
       <!-- sidecolumn-->
       <nav class="App__links">
@@ -26,12 +20,14 @@
 // @ is an alias to /src
 import RelatedLinks from "@/components/RelatedLinks.vue";
 import HeaderComponent from "@/components/HeaderComponent.vue";
+import NavigationComponent from "@/components/NavigationComponent.vue";
 
 export default {
   name: "HomeView",
   components: {
     RelatedLinks,
     HeaderComponent,
+    NavigationComponent,
   },
 };
 </script>
@@ -50,18 +46,6 @@ $xl: 1200px;
   color: #2c3e50;
   margin: 0 50px;
   max-width: 1600px;
-  &__nav {
-    padding: 30px;
-  }
-
-  &__nav a {
-    font-weight: bold;
-    color: #2c3e50;
-  }
-
-  &__nav a.router-link-exact-active {
-    color: #42b983;
-  }
 
   &__body {
     @media screen and (min-width: $sm) {
@@ -78,6 +62,7 @@ $xl: 1200px;
   &__main {
     @media screen and (min-width: $sm) {
       width: 100%;
+      background-color: #42b983;
     }
   }
   &__links {
