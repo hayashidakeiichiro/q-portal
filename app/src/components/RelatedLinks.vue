@@ -1,5 +1,6 @@
 <template>
   <div class="Links">
+    <WeatherComponent class="Links__weather" />
     <nav class="Links__publicLinks">
       <ul class="Links__list">
         <li class="Links__listItem">
@@ -43,7 +44,11 @@
 </template>
 
 <script>
+import WeatherComponent from "./TopView/WeatherComponent.vue";
 export default {
+  components: {
+    WeatherComponent,
+  },
   name: "RelatedLinks",
 };
 </script>
@@ -54,6 +59,9 @@ $lg: 992px;
 $xl: 1200px;
 
 .Links {
+  &__weather {
+    margin: 0 10px;
+  }
   &__list {
     list-style: none;
     @media (max-width: $md) {

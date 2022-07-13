@@ -14,9 +14,19 @@ export default {
   name: "NewinfoComponent",
   data: function () {
     return {
-      newsList: { 1: 1, 2: 2, 3: 3 },
+      newsList: { 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6 },
     };
   },
 };
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.Newinfo {
+  &__list {
+    display: grid;
+    list-style: none;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  &__listItem {
+  }
+}
+</style>
