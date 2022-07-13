@@ -8,6 +8,7 @@
     <div class="App__body">
       <div class="App__main">
         <NavigationComponent />
+        <router-view />
       </div>
       <!-- sidecolumn-->
       <nav class="App__links">
@@ -44,11 +45,15 @@ $xl: 1200px;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin: 0 50px;
+  margin: 0 auto;
+  padding: 0 50px;
   max-width: 1600px;
+  @media screen and (max-width: $md) {
+    padding: 0;
+  }
 
   &__body {
-    @media screen and (min-width: $sm) {
+    @media screen and (min-width: $md) {
       display: flex;
     }
   }
@@ -60,14 +65,13 @@ $xl: 1200px;
   }
 
   &__main {
-    @media screen and (min-width: $sm) {
+    @media screen and (min-width: $md) {
       width: 100%;
-      background-color: #42b983;
     }
   }
   &__links {
-    @media screen and (min-width: $sm) {
-      width: 300px;
+    @media screen and (min-width: $md) {
+      width: 500px;
     }
   }
 }

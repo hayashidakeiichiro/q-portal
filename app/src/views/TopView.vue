@@ -3,51 +3,22 @@
     <div class="TopPage__top">
       <img src="../assets/topimg.jpeg" alt="" class="TopPage__topImg" />
     </div>
-    <section class="TopPage__weather">
-      <h1>今日の天気</h1>
-      <img
-        :src="require(`@/../src/assets/WeatherImg/${this.WeatherCode}.jpg`)"
-        alt=""
-        ref="WeatherIcon"
-      />
-      {{ temperture.max }}
-      {{ temperture.min }}
-    </section>
-    <section class="TopPage__newInfo">
-      <h1>新着情報</h1>
-      <ul class="list-group">
-        <li v-for="(news, key) in newsList" :key="key" class="list-group-item">
-          <p>{{ news }}</p>
-        </li>
-      </ul>
-    </section>
+    <WeatherComponent class="TopPage__weather" />
+    <NewinfoComponent class="TopPage__newinfo" />
   </div>
 </template>
 
 <script>
+import WeatherComponent from "@/../src/components/TopView/WeatherComponent.vue";
+import NewinfoComponent from "@/../src/components/TopView/NewinfoComponent.vue";
 export default {
-  name: "TopView",
-  data: function () {
-    return {
-      WeatherCode: "none", // 天気のアイコン読み込みのためのWeatherCode
-      temperture: { max: 0, min: 0 },
-      newsList: { 1: 1, 2: 2, 3: 3 },
-    };
+  components: {
+    WeatherComponent,
+    NewinfoComponent,
   },
-  created() {
-    // 天気予報
-    const request = new XMLHttpRequest();
-    const vm = this;
-    const WeatherAPIURL = `https://api.open-meteo.com/v1/forecast?latitude=33.5573&longitude=130.1955&hourly=temperature_2m&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Asia%2FTokyo`;
-    request.open("GET", WeatherAPIURL, true);
-    request.onload = function () {
-      const jsonInfo = JSON.parse(this.responseText);
-      vm.WeatherCode = jsonInfo.daily.weathercode[0];
-      vm.temperture.max = jsonInfo.daily.temperature_2m_max[0];
-      vm.temperture.min = jsonInfo.daily.temperature_2m_min[0];
-      console.log(jsonInfo);
-    };
-    request.send();
+  name: "TopView",
+  component: {
+    WeatherComponent,
   },
 };
 </script>

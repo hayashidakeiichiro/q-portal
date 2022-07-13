@@ -6,6 +6,20 @@ import store from "./store";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 
+import { library } from "@fortawesome/fontawesome-svg-core";
+import {
+  faHouse,
+  faNewspaper,
+  faUtensils,
+  faTrainSubway,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+
+library.add(faHouse);
+library.add(faNewspaper);
+library.add(faUtensils);
+library.add(faTrainSubway);
+
 // import { initializeApp } from "firebase/app";
 
 // const firebaseConfig = {
@@ -20,4 +34,8 @@ import "bootstrap-vue/dist/bootstrap-vue.css";
 
 // const app = initializeApp(firebaseConfig);
 
-createApp(App).use(store).use(router).mount("#app");
+createApp(App)
+  .use(store)
+  .use(router)
+  .component("fa", FontAwesomeIcon)
+  .mount("#app");

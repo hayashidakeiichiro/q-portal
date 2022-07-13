@@ -56,7 +56,7 @@ $xl: 1200px;
 .Links {
   &__list {
     list-style: none;
-    @media (max-width: $sm) {
+    @media (max-width: $md) {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 10px;
