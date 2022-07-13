@@ -39,6 +39,27 @@ $md: 768px;
 $lg: 992px;
 $xl: 1200px;
 
+@mixin sm {
+  @media screen and (max-width: ($sm)) {
+    @content;
+  }
+}
+@mixin md {
+  @media screen and (max-width: ($md)) {
+    @content;
+  }
+}
+@mixin lg {
+  @media screen and (max-width: ($lg)) {
+    @content;
+  }
+}
+@mixin xl {
+  @media screen and (max-width: ($xl)) {
+    @content;
+  }
+}
+
 .App {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -48,33 +69,33 @@ $xl: 1200px;
   margin: 0 auto;
   padding: 0 50px;
   max-width: 1400px;
-  @media screen and (max-width: $md) {
+  @include md {
     padding: 0;
   }
 
   &__body {
-    @media screen and (min-width: $md) {
-      display: flex;
+    display: flex;
+    @include md {
+      display: block;
     }
   }
   &__header {
     height: 100px;
-    @media screen and (max-width: $sm) {
+    @include sm {
       height: 60px;
     }
   }
 
   &__main {
-    @media screen and (min-width: $md) {
-      width: 100%;
-    }
+    width: 100%;
   }
   &__links {
-    @media screen and (min-width: $md) {
+    width: 500px;
+    @include lg {
       width: 300px;
     }
-    @media screen and (min-width: $lg) {
-      width: 500px;
+    @include md {
+      width: 100%;
     }
   }
 }

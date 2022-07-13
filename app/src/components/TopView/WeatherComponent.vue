@@ -109,18 +109,39 @@ $md: 768px;
 $lg: 992px;
 $xl: 1200px;
 
+@mixin sm {
+  @media screen and (max-width: $sm) {
+    @content;
+  }
+}
+@mixin md {
+  @media screen and (max-width: $md) {
+    @content;
+  }
+}
+@mixin lg {
+  @media screen and (max-width: $lg) {
+    @content;
+  }
+}
+@mixin xl {
+  @media screen and (max-width: $xl) {
+    @content;
+  }
+}
+
 .Weather {
   //   border: 2px solid #000000;
   &__header {
     text-align: left;
     font-size: 25px;
-    @media screen and (max-width: $lg) {
+    @include lg {
       font-size: 20px;
     }
-    @media screen and (max-width: $md) {
+    @include md {
       font-size: 18px;
     }
-    @media screen and (max-width: $sm) {
+    @include sm {
       font-size: 16px;
     }
   }
@@ -138,26 +159,26 @@ $xl: 1200px;
   &__todayWeather {
     grid-area: a;
     font-size: 20px;
-    @media screen and (max-width: $lg) {
+    @include lg {
       font-size: 15px;
     }
-    @media screen and (max-width: $md) {
+    @include md {
       font-size: 20px;
     }
-    @media screen and (max-width: $sm) {
+    @include sm {
       font-size: 15px;
     }
   }
   &__tomorrowWeather {
     grid-area: b;
     font-size: 20px;
-    @media screen and (max-width: $lg) {
+    @include lg {
       font-size: 15px;
     }
-    @media screen and (max-width: $md) {
+    @include md {
       font-size: 20px;
     }
-    @media screen and (max-width: $sm) {
+    @include sm {
       font-size: 15px;
     }
   }
@@ -165,7 +186,7 @@ $xl: 1200px;
     display: flex;
     grid-area: c;
     font-size: 15px;
-    @media screen and (max-width: $sm) {
+    @include sm {
       display: none;
     }
   }

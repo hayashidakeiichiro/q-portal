@@ -58,13 +58,34 @@ $md: 768px;
 $lg: 992px;
 $xl: 1200px;
 
+@mixin sm {
+  @media screen and (max-width: $sm) {
+    @content;
+  }
+}
+@mixin md {
+  @media screen and (max-width: $md) {
+    @content;
+  }
+}
+@mixin lg {
+  @media screen and (max-width: $lg) {
+    @content;
+  }
+}
+@mixin xl {
+  @media screen and (max-width: $xl) {
+    @content;
+  }
+}
+
 .Links {
   &__weather {
     margin: 0 10px;
   }
   &__list {
     list-style: none;
-    @media (max-width: $md) {
+    @include md {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 10px;

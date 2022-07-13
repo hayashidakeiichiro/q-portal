@@ -26,13 +26,34 @@ $md: 768px;
 $lg: 992px;
 $xl: 1200px;
 
+@mixin sm {
+  @media screen and (max-width: $sm) {
+    @content;
+  }
+}
+@mixin md {
+  @media screen and (max-width: $md) {
+    @content;
+  }
+}
+@mixin lg {
+  @media screen and (max-width: $lg) {
+    @content;
+  }
+}
+@mixin xl {
+  @media screen and (max-width: $xl) {
+    @content;
+  }
+}
+
 .Navigation {
   &__main {
     width: 100%;
     padding: 30px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    @media screen and (max-width: $md) {
+    @include md {
       background-color: #f5f5f5;
     }
   }
@@ -53,20 +74,20 @@ $xl: 1200px;
     border-right: 1px solid #dadada;
     display: flex;
     flex-direction: column;
-    @media screen and (max-width: $md) {
+    @include md {
       font-size: 20px;
       border: none;
     }
-    @media screen and (max-width: $sm) {
+    @include sm {
       font-size: 13px;
     }
   }
   &__icon {
     font-size: 1.7em;
-    @media screen and (max-width: $md) {
+    @include md {
       font-size: 2em;
     }
-    @media screen and (max-width: $sm) {
+    @include sm {
       font-size: 2.5em;
     }
   }
