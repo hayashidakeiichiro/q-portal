@@ -47,7 +47,7 @@ $xl: 1200px;
   color: #2c3e50;
   margin: 0 auto;
   padding: 0 50px;
-  max-width: 1600px;
+  max-width: 1400px;
   @media screen and (max-width: $md) {
     padding: 0;
   }
@@ -71,6 +71,9 @@ $xl: 1200px;
   }
   &__links {
     @media screen and (min-width: $md) {
+      width: 300px;
+    }
+    @media screen and (min-width: $lg) {
       width: 500px;
     }
   }
