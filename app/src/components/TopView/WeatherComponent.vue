@@ -2,8 +2,8 @@
   <section class="Weather">
     <h1 class="Weather__header">糸島の天気</h1>
     <div class="Weather__main">
-      <div v-if="weatherInfo.length == 7" class="Weather__todayWeather">
-        <div>
+      <div v-if="weatherInfo.length > 0" class="Weather__todayWeather">
+        <div class="Weather__date">
           今日 {{ weatherInfo[0].month }}/{{ weatherInfo[0].date }}({{
             weatherInfo[0].day
           }})
@@ -16,13 +16,13 @@
           ref="WeatherIcon"
           class="Weather__img"
         />
-        <div>
+        <div class="Weather__temp">
           <div class="Weather__maxTemp">{{ weatherInfo[0].maxtemp }}℃</div>
           <div class="Weather__minTemp">{{ weatherInfo[0].mintemp }}℃</div>
         </div>
       </div>
-      <div v-if="weatherInfo.length == 7" class="Weather__tomorrowWeather">
-        <div>
+      <div v-if="weatherInfo.length > 0" class="Weather__tomorrowWeather">
+        <div class="Weather__date">
           明日 {{ weatherInfo[1].month }}/{{ weatherInfo[1].date }}({{
             weatherInfo[1].day
           }})
@@ -35,7 +35,7 @@
           ref="WeatherIcon"
           class="Weather__img"
         />
-        <div>
+        <div class="Weather__temp">
           <div class="Weather__maxTemp">{{ weatherInfo[1].maxtemp }}℃</div>
           <div class="Weather__minTemp">{{ weatherInfo[1].mintemp }}℃</div>
         </div>
@@ -88,14 +88,16 @@ export default {
       let today = new Date();
       const dayOfWeak = ["日", "月", "火", "水", "木", "金", "土"];
       for (let i = 0; i < 7; i++) {
-        vm.weatherInfo.push({
-          month: today.getMonth() + 1,
-          date: today.getDate(),
-          day: dayOfWeak[today.getDay()],
-          weathercode: jsonInfo.daily.weathercode[i],
-          maxtemp: jsonInfo.daily.temperature_2m_max[i],
-          mintemp: jsonInfo.daily.temperature_2m_min[i],
-        });
+        if (jsonInfo.daily.weathercode[i]) {
+          vm.weatherInfo.push({
+            month: today.getMonth() + 1,
+            date: today.getDate(),
+            day: dayOfWeak[today.getDay()],
+            weathercode: jsonInfo.daily.weathercode[i],
+            maxtemp: jsonInfo.daily.temperature_2m_max[i],
+            mintemp: jsonInfo.daily.temperature_2m_min[i],
+          });
+        }
         today.setDate(today.getDate() + 1);
       }
     };
@@ -135,19 +137,22 @@ $xl: 1200px;
   &__header {
     text-align: left;
     font-size: 25px;
+    font-weight: bold;
     @include lg {
       font-size: 20px;
     }
     @include md {
-      font-size: 18px;
+      font-size: 25px;
     }
     @include sm {
-      font-size: 16px;
+      font-size: 20px;
     }
   }
   &__main {
     display: grid;
     row-gap: 20px;
+    max-width: 500px;
+    margin: 0 auto;
     grid-template-areas:
       "a a b b "
       "a a b b"
@@ -158,48 +163,84 @@ $xl: 1200px;
   }
   &__todayWeather {
     grid-area: a;
-    font-size: 20px;
-    @include lg {
-      font-size: 15px;
-    }
     @include md {
-      font-size: 20px;
-    }
-    @include sm {
-      font-size: 15px;
+      display: grid;
+      grid-template-areas:
+        "d d d d"
+        "e e f f"
+        "e e f f";
     }
   }
   &__tomorrowWeather {
     grid-area: b;
+    @include md {
+      display: grid;
+      grid-template-areas:
+        "d d d d"
+        "e e f f"
+        "e e f f";
+    }
+  }
+  &__date {
     font-size: 20px;
+    font-weight: bold;
+    text-align: left;
     @include lg {
       font-size: 15px;
     }
     @include md {
+      grid-area: d;
       font-size: 20px;
     }
     @include sm {
+      font-size: 16px;
+    }
+  }
+  &__img {
+    margin: 0 auto;
+    @include md {
+      grid-area: e;
+    }
+  }
+  &__temp {
+    font-size: 20px;
+    font-weight: bold;
+    @include lg {
       font-size: 15px;
+    }
+    @include md {
+      grid-area: f;
+      font-size: 25px;
+      text-align: left;
+    }
+    @include sm {
+      font-size: 16px;
     }
   }
   &__weeklyWeather {
     display: flex;
     grid-area: c;
     font-size: 15px;
+    @include lg {
+      font-size: 13px;
+    }
+    @include md {
+      font-size: 15px;
+    }
     @include sm {
       display: none;
     }
   }
   &__img {
-    width: 80%;
-    max-width: 150px;
+    width: 100%;
+    max-width: 120px;
   }
   &__list {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     list-style: none;
-  }
-  &__listItem {
+    column-gap: 5px;
+    padding: 0;
   }
   &__maxTemp {
     color: rgb(217, 83, 83);

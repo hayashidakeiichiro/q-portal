@@ -50,7 +50,7 @@ $xl: 1200px;
 .Navigation {
   &__main {
     width: 100%;
-    padding: 30px;
+    padding: 10px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     @include md {

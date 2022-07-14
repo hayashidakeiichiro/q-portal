@@ -11,9 +11,7 @@
         <router-view />
       </div>
       <!-- sidecolumn-->
-      <nav class="App__links">
-        <RelatedLinks />
-      </nav>
+      <RelatedLinks class="App__links" />
     </div>
   </div>
 </template>
@@ -90,12 +88,14 @@ $xl: 1200px;
     width: 100%;
   }
   &__links {
+    margin: 0 8px;
     width: 500px;
     @include lg {
       width: 300px;
     }
     @include md {
-      width: 100%;
+      margin: 0 auto;
+      width: 96%;
     }
   }
 }
