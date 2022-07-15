@@ -1,6 +1,5 @@
 <template>
   <section class="Weather">
-    <h1 class="Weather__header">糸島の天気</h1>
     <div class="Weather__main">
       <div v-if="weatherInfo.length > 0" class="Weather__todayWeather">
         <div class="Weather__date">
