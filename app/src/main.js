@@ -12,13 +12,36 @@ import {
   faNewspaper,
   faUtensils,
   faTrainSubway,
+  faBook,
+  faChalkboardUser,
+  faGavel,
+  faMoneyBill,
+  faFlask,
+  faBriefcaseMedical,
+  faTooth,
+  faPills,
+  faGears,
+  faCompassDrafting,
+  faWheatAwn,
 } from "@fortawesome/free-solid-svg-icons";
+import { faHandshake } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-library.add(faHouse);
-library.add(faNewspaper);
-library.add(faUtensils);
-library.add(faTrainSubway);
+library.add(faHouse, faNewspaper, faUtensils, faTrainSubway);
+library.add(
+  faHandshake,
+  faBook,
+  faChalkboardUser,
+  faGavel,
+  faMoneyBill,
+  faFlask,
+  faBriefcaseMedical,
+  faTooth,
+  faPills,
+  faGears,
+  faCompassDrafting,
+  faWheatAwn
+);
 
 // import { initializeApp } from "firebase/app";
 
