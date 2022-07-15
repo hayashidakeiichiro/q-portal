@@ -88,7 +88,7 @@ $xl: 1200px;
     width: 100%;
   }
   &__links {
-    margin: 0 8px;
+    margin: 0 16px;
     width: 500px;
     @include lg {
       width: 300px;

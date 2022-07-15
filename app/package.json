@@ -22,8 +22,11 @@
     "sass": "^1.53.0",
     "sass-loader": "^13.0.2",
     "scss-loader": "^0.0.1",
+    "socket.io": "^4.5.1",
+    "socket.io-client": "^4.5.1",
     "vue": "^3.2.37",
     "vue-router": "^4.0.3",
+    "vue-socket.io": "^3.0.10",
     "vuex": "^4.0.0"
   },
   "devDependencies": {

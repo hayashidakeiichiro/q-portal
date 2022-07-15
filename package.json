@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev":"cd app && npm run build && cd ../ && nodemon server.js"
+    "dev": "cd app && npm run build && cd ../ && nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,12 @@
   },
   "homepage": "https://github.com/hayashidakeiichiro/q-portal#readme",
   "dependencies": {
+    "encoding-japanese": "^2.0.0",
     "express": "^4.18.1",
-    "nodemon": "^2.0.19"
+    "filereader": "^0.10.3",
+    "jsdom": "^20.0.0",
+    "nodemon": "^2.0.19",
+    "socket.io": "^4.5.1",
+    "xmlhttprequest": "^1.8.0"
   }
 }
