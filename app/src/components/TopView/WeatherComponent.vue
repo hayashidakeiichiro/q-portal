@@ -213,7 +213,7 @@ $xl: 1200px;
       text-align: left;
     }
     @include sm {
-      font-size: 16px;
+      font-size: 20px;
     }
   }
   &__weeklyWeather {
@@ -232,7 +232,7 @@ $xl: 1200px;
   }
   &__img {
     width: 100%;
-    max-width: 120px;
+    max-width: 100px;
   }
   &__list {
     display: grid;

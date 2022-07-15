@@ -80,7 +80,7 @@ $xl: 1200px;
   &__header {
     height: 100px;
     @include sm {
-      height: 60px;
+      height: 80px;
     }
   }
 

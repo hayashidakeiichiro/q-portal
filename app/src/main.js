@@ -23,6 +23,8 @@ import {
   faGears,
   faCompassDrafting,
   faWheatAwn,
+  faRightToBracket,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { faHandshake } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -40,7 +42,9 @@ library.add(
   faPills,
   faGears,
   faCompassDrafting,
-  faWheatAwn
+  faWheatAwn,
+  faRightToBracket,
+  faUser
 );
 
 // import { initializeApp } from "firebase/app";

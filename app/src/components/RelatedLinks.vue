@@ -17,6 +17,7 @@
           <a
             href="https://ku-portal.kyushu-u.ac.jp/campusweb/top.do"
             target="_brank"
+            rel="noopener noreferrer"
           >
             <img
               class="Links__listImg"
@@ -26,6 +27,7 @@
           <a
             href="https://ku-portal.kyushu-u.ac.jp/campusweb/top.do"
             target="_brank"
+            rel="noopener noreferrer"
           >
             <img
               class="Links__listImgSM"
@@ -35,13 +37,21 @@
           </a>
         </li>
         <li class="Links__publicListItem">
-          <a href="https://moodle.s.kyushu-u.ac.jp/" target="_brank">
+          <a
+            href="https://moodle.s.kyushu-u.ac.jp/"
+            target="_brank"
+            rel="noopener noreferrer"
+          >
             <img
               class="Links__listImg"
               src="@/../src/assets/linkImg/moodle.png"
             />
           </a>
-          <a href="https://moodle.s.kyushu-u.ac.jp/" target="_brank">
+          <a
+            href="https://moodle.s.kyushu-u.ac.jp/"
+            target="_brank"
+            rel="noopener noreferrer"
+          >
             <img
               class="Links__listImgSM"
               src="@/../src/assets/linkImg/moodle_sm.png"
@@ -50,13 +60,21 @@
           </a>
         </li>
         <li class="Links__publicListItem">
-          <a href="https://www.kyushu-u.ac.jp/ja/" target="_brank">
+          <a
+            href="https://www.kyushu-u.ac.jp/ja/"
+            target="_brank"
+            rel="noopener noreferrer"
+          >
             <img
               class="Links__listImg"
               src="@/../src/assets/linkImg/kyudaiLogo.png"
             />
           </a>
-          <a href="https://www.kyushu-u.ac.jp/ja/" target="_brank">
+          <a
+            href="https://www.kyushu-u.ac.jp/ja/"
+            target="_brank"
+            rel="noopener noreferrer"
+          >
             <img
               class="Links__listImgSM"
               src="@/../src/assets/linkImg/kyudaiLogo_sm.png"
@@ -76,6 +94,7 @@
           <a
             href="https://kyoso.kyushu-u.ac.jp/"
             target="_brank"
+            rel="noopener noreferrer"
             class="Links__link"
           >
             <fa :icon="['far', 'handshake']" class="Links__icon" />
@@ -86,6 +105,7 @@
           <a
             href="https://www2.lit.kyushu-u.ac.jp/"
             target="_brank"
+            rel="noopener noreferrer"
             class="Links__link"
           >
             <fa icon="book" class="Links__icon" />
@@ -96,6 +116,7 @@
           <a
             href="https://www.education.kyushu-u.ac.jp/"
             target="_brank"
+            rel="noopener noreferrer"
             class="Links__link"
           >
             <fa icon="chalkboard-user" class="Links__icon" />
@@ -106,6 +127,7 @@
           <a
             href="http://www.law.kyushu-u.ac.jp/"
             target="_brank"
+            rel="noopener noreferrer"
             class="Links__link"
           >
             <fa icon="gavel" class="Links__icon" />
@@ -116,6 +138,7 @@
           <a
             href="https://www.econ.kyushu-u.ac.jp/"
             target="_brank"
+            rel="noopener noreferrer"
             class="Links__link"
           >
             <fa icon="money-bill" class="Links__icon" />
@@ -126,6 +149,7 @@
           <a
             href="https://www.sci.kyushu-u.ac.jp/"
             target="_brank"
+            rel="noopener noreferrer"
             class="Links__link"
           >
             <fa icon="flask" class="Links__icon" />
@@ -136,6 +160,7 @@
           <a
             href="https://www.med.kyushu-u.ac.jp/"
             target="_brank"
+            rel="noopener noreferrer"
             class="Links__link"
           >
             <fa icon="briefcase-medical" class="Links__icon" />
@@ -146,6 +171,7 @@
           <a
             href="https://www.dent.kyushu-u.ac.jp/"
             target="_brank"
+            rel="noopener noreferrer"
             class="Links__link"
           >
             <fa icon="tooth" class="Links__icon" />
@@ -156,6 +182,7 @@
           <a
             href="https://www.phar.kyushu-u.ac.jp/"
             target="_brank"
+            rel="noopener noreferrer"
             class="Links__link"
           >
             <fa icon="pills" class="Links__icon" />
@@ -166,6 +193,7 @@
           <a
             href="https://www.eng.kyushu-u.ac.jp/"
             target="_brank"
+            rel="noopener noreferrer"
             class="Links__link"
           >
             <fa icon="gears" class="Links__icon" />
@@ -176,6 +204,7 @@
           <a
             href="https://www.design.kyushu-u.ac.jp/"
             target="_brank"
+            rel="noopener noreferrer"
             class="Links__link"
           >
             <fa icon="compass-drafting" class="Links__icon" />
@@ -186,6 +215,7 @@
           <a
             href="https://www.agr.kyushu-u.ac.jp/"
             target="_brank"
+            rel="noopener noreferrer"
             class="Links__link"
           >
             <fa icon="wheat-awn" class="Links__icon" />
@@ -255,6 +285,9 @@ $xl: 1200px;
     text-align: left;
     border-bottom: dotted 2px #333333;
     display: flex;
+    @include sm {
+      font-size: 18px;
+    }
   }
   &__headerIcon {
     display: block;
@@ -262,11 +295,16 @@ $xl: 1200px;
     width: 12px;
     height: 22px;
     border-radius: 2px;
+    @include sm {
+      width: 10px;
+      height: 18px;
+    }
   }
   &__list {
     list-style: none;
     padding: 20px 0 0 0;
     @include md {
+      padding: 10px 0 0 0;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 10px;
@@ -283,7 +321,7 @@ $xl: 1200px;
     }
   }
   &__departmentListItem {
-    // border: 2px #bbbbbb solid;
+    // border-bottom: 2px #bbbbbb solid;
     height: 40px;
     margin: 10px 0 0 20px;
     @include lg {
@@ -306,7 +344,7 @@ $xl: 1200px;
     font-size: 1.5em;
     color: #87003c;
     @include sm {
-      font-size: 2em;
+      font-size: 1.8em;
     }
   }
   &__listImg {
@@ -327,8 +365,9 @@ $xl: 1200px;
   }
   &__listTitleSM {
     display: none;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
+    color: #000000;
     @include sm {
       display: block;
     }
