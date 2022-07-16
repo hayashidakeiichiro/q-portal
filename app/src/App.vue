@@ -8,7 +8,7 @@
     <div class="App__body">
       <div class="App__main">
         <NavigationComponent />
-        <router-view />
+        <router-view class="App__view" />
       </div>
       <!-- sidecolumn-->
       <RelatedLinks class="App__links" />
@@ -86,6 +86,12 @@ $xl: 1200px;
 
   &__main {
     width: 100%;
+  }
+  &__view {
+    @include md {
+      margin: 0 auto;
+      width: 96%;
+    }
   }
   &__links {
     margin: 0 16px;
