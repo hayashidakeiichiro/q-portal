@@ -15,6 +15,7 @@ const FileReader = require("filereader");
 io.on("connection", function (socket) {
   socket.on("reqMenu", async () => {
     const MenuURL = `http://www.coop.kyushu-u.ac.jp/shokudou/month_menu.html`;
+    const setMealURL = `http://www.coop.kyushu-u.ac.jp/teishoku220711.html`;
     fetch(MenuURL, {
       method: "GET",
     })
@@ -22,26 +23,17 @@ io.on("connection", function (socket) {
       .then((blob) => {
         socket.emit("resMenu", blob);
       });
-
-    // const readAsText = (blob, encoding = null) =>
-    //   new Promise((resolve) => {
-    //     const reader = new FileReader();
-    //     reader.onload = () => {
-    //       resolve(reader.result);
-    //     };
-    //     reader.readAsText(blob, encoding);
-    //   });
-
-    // const response = await fetch(MenuURL);
-    // const blob = await response.blob();
-    // const html = await readAsText(blob, "shift-jis");
-
-    // const request = new XMLHttpRequest();
-    // request.open("GET", MenuURL, true);
-    // request.onload = function () {
-    //   this.response.console.log(this.responseText);
-    // };
-    // request.send();
+    fetch(setMealURL, {
+      method: "GET",
+    })
+      .then((res) => res.arrayBuffer())
+      .then((blob) => {
+        socket.emit("resSetMeal", blob);
+      });
+  });
+  socket.on("reqTimeTable", () => {
+    const json = require("./json/timetable.json");
+    socket.emit("resTimeTable", json);
   });
 });
 

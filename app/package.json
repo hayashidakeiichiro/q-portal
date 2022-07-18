@@ -19,6 +19,7 @@
     "bootstrap-vue": "^2.22.0",
     "core-js": "^3.8.3",
     "firebase": "^9.9.0",
+    "japanese-holidays": "^1.0.10",
     "sass": "^1.53.0",
     "sass-loader": "^13.0.2",
     "scss-loader": "^0.0.1",

@@ -2,6 +2,27 @@
   <section class="Dining">
     <h1 class="Dining__header">
       <span class="Dining__headerIcon"></span>
+      &nbsp;今日の定食メニュー
+    </h1>
+    <div class="Dining__setMeal">
+      <div class="Dining__date">{{ setMeal.date }}</div>
+      <table class="Dining__setMealTable">
+        <tr>
+          <th class="Dining__setMealTitle">昼食</th>
+          <th class="Dining__setMealTitle">夕食</th>
+        </tr>
+        <tr>
+          <td class="Dining__setMealMenu">
+            <div v-html="setMeal.lunch"></div>
+          </td>
+          <td class="Dining__setMealMenu">
+            <div v-html="setMeal.dinner"></div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <h1 class="Dining__header">
+      <span class="Dining__headerIcon"></span>
       &nbsp;今月のメニュー
     </h1>
     <div class="Dining__btnContainer">
@@ -30,6 +51,7 @@
         ビッグどら
       </button>
     </div>
+
     <div v-html="showMenu" class="Dining__menu"></div>
   </section>
 </template>
@@ -39,6 +61,7 @@ export default {
   data: function () {
     return {
       showMenu: "",
+      setMeal: { date: "", lunch: "<p>お休み</p>", dinner: "<p>お休み</p>" },
       menuDoc: {},
       dayInfo: {},
     };
@@ -55,9 +78,10 @@ export default {
     const decodeAsText = (arrayBuffer, encoding = null) =>
       new TextDecoder(encoding).decode(arrayBuffer);
     socket.emit("reqMenu");
+
+    //今月のメニュー取得
     socket.on("resMenu", (blob) => {
       const text = decodeAsText(blob, "shift-jis");
-      vm.data = text;
       const doc = parser.parseFromString(text, "text/html");
       for (let i = 1; i <= 10; i++) {
         if (i < 10) {
@@ -68,14 +92,37 @@ export default {
       }
       vm.showMenu = vm.menuDoc.menu1;
     });
-    let today = new Date();
-    const dayOfWeak = ["日", "月", "火", "水", "木", "金", "土"];
-    this.dayInfo = {
-      month: today.getMonth() + 1,
-      date: today.getDate(),
-      day: dayOfWeak[today.getDay()],
-      numOfWeek: Math.floor((today.getUTCDate() - today.getDay() + 12) / 7),
-    };
+
+    //今日の定食取得
+    socket.on("resSetMeal", (blob) => {
+      const text = decodeAsText(blob, "shift-jis");
+      const doc = parser.parseFromString(text, "text/html");
+      const docList = doc.getElementsByClassName("menu");
+      const today = new Date();
+      const dayOfWeak = ["日", "月", "火", "水", "木", "金", "土"];
+      vm.setMeal.date =
+        String(today.getMonth() + 1) +
+        "/" +
+        String(today.getDate()) +
+        "(" +
+        dayOfWeak[today.getDay()] +
+        ")";
+
+      Array.prototype.forEach.call(docList, (item) => {
+        //これだけじゃバグるかも
+        if (item.outerHTML.indexOf(String(today.getDate()) + "日") != -1) {
+          const tags = item.getElementsByTagName("td");
+          Array.prototype.forEach.call(tags, (td, i) => {
+            if (i == 2) {
+              vm.setMeal.lunch = td.innerHTML;
+            }
+            if (i == 5) {
+              vm.setMeal.dinner = td.innerHTML;
+            }
+          });
+        }
+      });
+    });
   },
 };
 </script>
@@ -185,6 +232,39 @@ $xl: 1200px;
         height: 30px;
         font-size: 16px;
       }
+    }
+  }
+
+  &__setMeal {
+    padding: 20px 0;
+    text-align: left;
+  }
+  &__setMealTable {
+    width: 100%;
+    border: 2px solid;
+  }
+  &__setMealTitle {
+    font-size: 25px;
+    background-color: #87003c;
+    color: #ffffff;
+    @include sm {
+      font-size: 15px;
+    }
+  }
+  &__setMealMenu {
+    font-size: 18px;
+    border: 1px solid #999999;
+    height: 100px;
+    @include sm {
+      height: 70px;
+      font-size: 12px;
+    }
+  }
+  &__date {
+    font-size: 20px;
+    font-weight: bold;
+    @include sm {
+      font-size: 15px;
     }
   }
 }
