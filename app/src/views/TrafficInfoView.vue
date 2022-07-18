@@ -37,28 +37,36 @@
       </div>
       <div class="Traffic__btnContainer">
         <button
-          class="Traffic__upBtn"
-          :class="{ Traffic__selectedBtn: UpDownToggle == 'Up' }"
+          class="Traffic__updownBtn"
+          :class="{ Traffic__selectedUpDownBtn: UpDownToggle == 'Up' }"
           @click="changeUp()"
         >
           {{ showStation.up }}
         </button>
         <button
-          class="Traffic__downBtn"
-          :class="{ Traffic__selectedBtn: UpDownToggle == 'Down' }"
+          class="Traffic__updownBtn"
+          :class="{ Traffic__selectedUpDownBtn: UpDownToggle == 'Down' }"
           @click="changeDown()"
         >
           {{ showStation.down }}
         </button>
       </div>
       <div>
-        <!-- {{ showStation.recentTimeTbleUp }} -->
-        <div v-if="UpDownToggle == 'Up'">
-          <!-- {{ showStation.recentTimeTbleUp.min }}
-          {{ showStation.recentTimeTbleUp.sec }} -->
+        <div v-if="UpDownToggle == 'Up'" class="Traffic__recentContainer">
+          <div class="Traffic__nextTrain">
+            次の電車まで
+            <p class="Traffic__nextTrainTitle">
+              {{ showTime.min }}分 {{ showTime.sec }}秒
+            </p>
+            {{ showStation.recentTimeTbleUp.else[0].info }}
+            <br />
+            {{ showStation.recentTimeTbleUp.else[0].time }}発
+          </div>
           <ul class="Traffic__recentTimeTableList">
             <li
-              v-for="(item, index) in showStation.recentTimeTbleUp.else"
+              v-for="(item, index) in showStation.recentTimeTbleUp.else.slice(
+                1
+              )"
               :key="index"
               class="Traffic__recentTimeTableListItem"
             >
@@ -67,12 +75,21 @@
             </li>
           </ul>
         </div>
-        <div v-if="UpDownToggle == 'Down'">
-          <!-- {{ showStation.recentTimeTbleDown.min }}
-          {{ showStation.recentTimeTbleDown.sec }} -->
+        <div v-if="UpDownToggle == 'Down'" class="Traffic__recentContainer">
+          <div class="Traffic__nextTrain">
+            次の電車まで
+            <p class="Traffic__nextTrainTitle">
+              {{ showTime.min }}分 {{ showTime.sec }}秒
+            </p>
+            {{ showStation.recentTimeTbleDown.else[0].info }}
+            <br />
+            {{ showStation.recentTimeTbleDown.else[0].time }}発
+          </div>
           <ul class="Traffic__recentTimeTableList">
             <li
-              v-for="(item, index) in showStation.recentTimeTbleDown.else"
+              v-for="(item, index) in showStation.recentTimeTbleDown.else.slice(
+                1
+              )"
               :key="index"
               class="Traffic__recentTimeTableListItem"
             >
@@ -106,7 +123,6 @@
         </button>
       </div>
       <div>
-        <!-- {{ showAllTimeTable }} -->
         <div v-if="UpDownToggle == 'Up'">
           <ul class="Traffic__TimeTableList">
             <li
@@ -114,8 +130,16 @@
               :key="index"
               class="Traffic__TimeTableListItem"
             >
-              {{ key }}
-              {{ item }}
+              <p>
+                &emsp;
+                {{ key }}
+              </p>
+              <p>
+                {{ item.split("・")[0] }}
+              </p>
+              <p>
+                {{ item.split("・")[1] }}
+              </p>
             </li>
           </ul>
         </div>
@@ -126,8 +150,16 @@
               :key="index"
               class="Traffic__TimeTableListItem"
             >
-              {{ key }}
-              {{ item }}
+              <p>
+                &emsp;
+                {{ key }}
+              </p>
+              <p>
+                {{ item.split("・")[0] }}
+              </p>
+              <p>
+                {{ item.split("・")[1] }}
+              </p>
             </li>
           </ul>
         </div>
@@ -165,12 +197,16 @@ export default {
         down: "西唐津方面",
         timeTableUp: {},
         timeTableDown: {},
-        recentTimeTbleUp: { min: 0, sec: 0, else: [] },
-        recentTimeTbleDown: { min: 0, sec: 0, else: [] },
+        recentTimeTbleUp: { else: [] },
+        recentTimeTbleDown: { else: [] },
       },
       showAllTimeTable: {
         timeTableUp: {},
         timeTableDown: {},
+      },
+      showTime: {
+        min: 0,
+        sec: 0,
       },
     };
   },
@@ -242,6 +278,12 @@ export default {
             }
           }
         });
+        if (elseList.length == 0) {
+          elseList.push({
+            time: "24:00",
+            info: "今日の営業は終了しました",
+          });
+        }
         this.showStation.recentTimeTbleUp.else = elseList;
       }
       if (this.UpDownToggle == "Down") {
@@ -259,6 +301,12 @@ export default {
             }
           }
         });
+        if (elseList.length == 0) {
+          elseList.push({
+            time: "24:00",
+            info: "今日の営業は終了しました",
+          });
+        }
         this.showStation.recentTimeTbleDown.else = elseList;
       }
       console.log(111);
@@ -286,6 +334,33 @@ export default {
       vm.selectStation("九大学研都市駅");
       vm.setRecentTimeTable();
     });
+    setInterval(() => {
+      const today = new Date();
+      const nowhour = today.getHours();
+      const nowmin = today.getMinutes();
+      const nowsec = today.getSeconds();
+      if (vm.UpDownToggle == "Up") {
+        const [hour, min] =
+          vm.showStation.recentTimeTbleUp.else[0].time.split(":");
+        if (60 * (Number(hour) - nowhour) + Number(min) - nowmin - 1 >= 0) {
+          vm.showTime.min =
+            60 * (Number(hour) - nowhour) + Number(min) - nowmin - 1;
+          vm.showTime.sec = 59 - nowsec;
+        } else {
+          vm.setRecentTimeTable();
+        }
+      } else {
+        const [hour, min] =
+          vm.showStation.recentTimeTbleDown.else[0].time.split(":");
+        if (60 * (Number(hour) - nowhour) + Number(min) - nowmin - 1 >= 0) {
+          vm.showTime.min =
+            60 * (Number(hour) - nowhour) + Number(min) - nowmin - 1;
+          vm.showTime.sec = 59 - nowsec;
+        } else {
+          vm.setRecentTimeTable();
+        }
+      }
+    }, 1000);
   },
 };
 </script>
@@ -345,6 +420,7 @@ ul {
   &__btnContainer {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    margin: 30px 0 0 0;
   }
   &__btn {
     border: none;
@@ -361,40 +437,69 @@ ul {
     }
   }
 
-  &__upBtn {
-    border: none;
-    height: 60px;
+  &__updownBtn {
+    height: 50px;
     font-size: 16px;
     font-weight: bold;
-    background-color: #fd9297;
+    background-color: #ffffff;
     color: #191919;
+    border: #666666 1px solid;
     @include sm {
-      height: 50px;
+      height: 40px;
       font-size: 12px;
     }
   }
-  &__downBtn {
-    border: none;
-    height: 60px;
-    font-size: 16px;
+  &__selectedUpDownBtn {
+    border: #87003c 1px solid;
+    background-color: #87003c;
     font-weight: bold;
-    background-color: #7cb6fd;
-    color: #191919;
-    @include sm {
-      height: 50px;
-      font-size: 12px;
-    }
+    color: #ffffff;
   }
   &__selectedBtn {
     border-bottom: #87003c 3px solid;
   }
+  &__recentContainer {
+    display: flex;
+    border-top: #87003c 2px solid;
+    padding: 20px;
+  }
+  &__nextTrain {
+    font-size: 25px;
+    width: 50%;
+    @include sm {
+      font-size: 15px;
+    }
+  }
+  &__nextTrainTitle {
+    font-size: 30px;
+    font-weight: bold;
+    @include sm {
+      font-size: 20px;
+    }
+  }
+
   &__recentTimeTableListItem {
-    height: 50px;
+    height: 40px;
+    font-size: 20px;
     text-align: left;
+    @include sm {
+      font-size: 12px;
+    }
+  }
+  &__TimeTableList {
+    padding: 20px 0;
   }
   &__TimeTableListItem {
-    height: 50px;
+    display: grid;
+    grid-template-columns: 30% 30% 40%;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
     text-align: left;
+    border: #d3d3d3 1px solid;
+    @include sm {
+      font-size: 15px;
+    }
   }
 }
 </style>
