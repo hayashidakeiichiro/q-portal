@@ -1,5 +1,14 @@
 <template>
   <section class="Dining">
+    <div>
+      <a
+        href="http://www.coop.kyushu-u.ac.jp/shokudoubu.html"
+        target="_brank"
+        rel="noopener noreferrer"
+      >
+        <img src="../assets/dining.png" alt="" class="Dining__topImg" />
+      </a>
+    </div>
     <h1 class="Dining__header">
       <span class="Dining__headerIcon"></span>
       &nbsp;今日の定食メニュー
@@ -110,6 +119,7 @@ export default {
 
       Array.prototype.forEach.call(docList, (item) => {
         //これだけじゃバグるかも
+        console.log(item);
         if (item.outerHTML.indexOf(String(today.getDate()) + "日") != -1) {
           const tags = item.getElementsByTagName("td");
           Array.prototype.forEach.call(tags, (td, i) => {
@@ -155,6 +165,9 @@ $xl: 1200px;
 .Dining {
   padding: 20px 0;
 
+  &__topImg {
+    width: 100%;
+  }
   &__header {
     font-size: 22px;
     font-weight: bold;
@@ -247,6 +260,7 @@ $xl: 1200px;
     font-size: 25px;
     background-color: #87003c;
     color: #ffffff;
+    width: 50%;
     @include sm {
       font-size: 15px;
     }
@@ -255,6 +269,7 @@ $xl: 1200px;
     font-size: 18px;
     border: 1px solid #999999;
     height: 100px;
+    font-weight: bold;
     @include sm {
       height: 70px;
       font-size: 12px;

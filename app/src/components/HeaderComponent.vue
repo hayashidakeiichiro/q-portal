@@ -48,7 +48,7 @@ $xl: 1200px;
   display: grid;
   grid-template-columns: 150px 1fr 250px;
   @include sm {
-    grid-template-columns: 120px 1fr 200px;
+    grid-template-columns: 80px 1fr 180px;
   }
   &__img {
     width: 100%;
@@ -84,7 +84,7 @@ $xl: 1200px;
     font-weight: bold;
     font-size: 18px;
     @include sm {
-      font-size: 14px;
+      font-size: 12px;
     }
   }
 }

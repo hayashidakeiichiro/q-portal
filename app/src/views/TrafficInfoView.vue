@@ -3,7 +3,7 @@
     <secton class="Traffic__train">
       <h1 class="Traffic__header">
         <span class="Traffic__headerIcon"></span>
-        &nbsp;電車時刻表
+        &nbsp;次の電車
       </h1>
       <div class="Traffic__btnContainer">
         <button
@@ -99,6 +99,10 @@
           </ul>
         </div>
       </div>
+      <h1 class="Traffic__header">
+        <span class="Traffic__headerIcon"></span>
+        &nbsp;{{ stationToggle }}の時刻表
+      </h1>
       <div class="Traffic__btnContainer">
         <button
           class="Traffic__btn"
@@ -197,8 +201,8 @@ export default {
         down: "西唐津方面",
         timeTableUp: {},
         timeTableDown: {},
-        recentTimeTbleUp: { else: [] },
-        recentTimeTbleDown: { else: [] },
+        recentTimeTbleUp: { else: [{ time: "00:00", info: "" }] },
+        recentTimeTbleDown: { else: [{ time: "00:00", info: "" }] },
       },
       showAllTimeTable: {
         timeTableUp: {},
@@ -208,6 +212,7 @@ export default {
         min: 0,
         sec: 0,
       },
+      invalidID: undefined,
     };
   },
   methods: {
@@ -309,7 +314,6 @@ export default {
         }
         this.showStation.recentTimeTbleDown.else = elseList;
       }
-      console.log(111);
     },
   },
   mounted: function () {
@@ -334,7 +338,7 @@ export default {
       vm.selectStation("九大学研都市駅");
       vm.setRecentTimeTable();
     });
-    setInterval(() => {
+    this.invalidID = setInterval(() => {
       const today = new Date();
       const nowhour = today.getHours();
       const nowmin = today.getMinutes();
@@ -360,7 +364,11 @@ export default {
           vm.setRecentTimeTable();
         }
       }
+      console.log(222);
     }, 1000);
+  },
+  beforeUnmount() {
+    clearInterval(this.invalidID);
   },
 };
 </script>
@@ -396,6 +404,7 @@ ul {
   padding: 0;
 }
 .Traffic {
+  padding: 20px 0;
   &__header {
     font-size: 22px;
     font-weight: bold;
@@ -462,6 +471,7 @@ ul {
     display: flex;
     border-top: #87003c 2px solid;
     padding: 20px;
+    font-weight: bold;
   }
   &__nextTrain {
     font-size: 25px;
@@ -472,18 +482,23 @@ ul {
   }
   &__nextTrainTitle {
     font-size: 30px;
-    font-weight: bold;
     @include sm {
       font-size: 20px;
     }
   }
 
+  &__recentTimeTableList {
+    list-style: square;
+    font-weight: bold;
+    padding-left: 20px;
+  }
   &__recentTimeTableListItem {
     height: 40px;
     font-size: 20px;
     text-align: left;
     @include sm {
       font-size: 12px;
+      height: 30px;
     }
   }
   &__TimeTableList {
@@ -500,6 +515,9 @@ ul {
     @include sm {
       font-size: 15px;
     }
+  }
+  &__TimeTableListItem:nth-child(even) {
+    background-color: #ebebeb;
   }
 }
 </style>

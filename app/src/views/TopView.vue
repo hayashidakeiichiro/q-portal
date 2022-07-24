@@ -20,6 +20,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .TopPage {
+  padding: 20px 0;
   &__top {
   }
   &__topImg {
