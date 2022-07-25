@@ -285,8 +285,11 @@ $xl: 1200px;
     text-align: left;
     border-bottom: dotted 2px #333333;
     display: flex;
+    @include md {
+      font-size: 32px;
+    }
     @include sm {
-      font-size: 18px;
+      font-size: 24px;
     }
   }
   &__headerIcon {
@@ -295,9 +298,13 @@ $xl: 1200px;
     width: 12px;
     height: 22px;
     border-radius: 2px;
+    @include md {
+      width: 16px;
+      height: 32px;
+    }
     @include sm {
-      width: 10px;
-      height: 18px;
+      width: 12px;
+      height: 24px;
     }
   }
   &__list {

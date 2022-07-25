@@ -10,6 +10,9 @@ app.use("/css", express.static(__dirname + "/app/dist/css/"));
 app.use("/js", express.static(__dirname + "/app/dist/js/"));
 app.use("/favicon", express.static(__dirname + "/app/dist/favicon.ico"));
 app.get("/", (req, res) => res.sendFile(__dirname + "/app/dist/index.html"));
+app.get("/news", (req, res) => res.sendFile(__dirname + "/app/dist/index.html"));
+app.get("/dining", (req, res) => res.sendFile(__dirname + "/app/dist/index.html"));
+app.get("/traffic", (req, res) => res.sendFile(__dirname + "/app/dist/index.html"));
 app.get("/newsImg", (req, res) => {
   fs.readFile(__dirname + "/public/newsImg/test.jpg", (err, data) => {
     res.type("jpg");

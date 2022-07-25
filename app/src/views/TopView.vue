@@ -22,6 +22,7 @@ export default {
 .TopPage {
   padding: 20px 0;
   &__top {
+    margin: 0 0 20px 0;
   }
   &__topImg {
     width: 100%;

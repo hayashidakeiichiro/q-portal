@@ -81,24 +81,25 @@ $xl: 1200px;
 .News {
   padding: 20px 0;
   &__header {
-    font-size: 22px;
+    font-size: 32px;
     font-weight: bold;
     text-align: left;
     border-bottom: dotted 2px #333333;
     display: flex;
     @include sm {
-      font-size: 18px;
+      font-size: 24px;
+      border-bottom: dotted 1px #333333;
     }
   }
   &__headerIcon {
     display: block;
     background-color: #87003c;
-    width: 12px;
-    height: 22px;
+    width: 16px;
+    height: 32px;
     border-radius: 2px;
     @include sm {
-      width: 10px;
-      height: 18px;
+      width: 12px;
+      height: 24px;
     }
   }
   &__newsList {
@@ -109,7 +110,7 @@ $xl: 1200px;
     border-bottom: #878787 1px dotted;
     height: 150px;
     @include sm {
-      height: 100px;
+      height: auto;
     }
   }
   &__newsLink {
@@ -117,6 +118,9 @@ $xl: 1200px;
     color: #000000;
     font-size: 20px;
     display: flex;
+    @include sm {
+      flex-direction: column;
+    }
   }
   &__newsText {
     padding-left: 50px;
@@ -129,14 +133,15 @@ $xl: 1200px;
     height: 130px;
     margin: 10px 0;
     @include sm {
-      height: 80px;
+      height: auto;
+      width: 100%;
     }
   }
   &__newsDate {
-    font-size: 15px;
+    font-size: 16px;
     margin-bottom: 5px;
     @include sm {
-      font-size: 8px;
+      font-size: 14px;
     }
   }
   &__newsTitle {
@@ -144,7 +149,7 @@ $xl: 1200px;
     font-size: 20px;
     font-weight: bold;
     @include sm {
-      font-size: 12px;
+      font-size: 16px;
     }
   }
   &__newsTitle:hover {
@@ -153,7 +158,7 @@ $xl: 1200px;
   &__newsSubTitle {
     font-size: 18px;
     @include sm {
-      font-size: 10px;
+      font-size: 14px;
     }
   }
 }

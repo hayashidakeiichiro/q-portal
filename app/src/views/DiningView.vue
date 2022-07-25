@@ -169,24 +169,25 @@ $xl: 1200px;
     width: 100%;
   }
   &__header {
-    font-size: 22px;
+    font-size: 32px;
     font-weight: bold;
     text-align: left;
     border-bottom: dotted 2px #333333;
     display: flex;
     @include sm {
-      font-size: 18px;
+      font-size: 24px;
+      border-bottom: dotted 1px #333333;
     }
   }
   &__headerIcon {
     display: block;
     background-color: #87003c;
-    width: 12px;
-    height: 22px;
+    width: 16px;
+    height: 32px;
     border-radius: 2px;
     @include sm {
-      width: 10px;
-      height: 18px;
+      width: 12px;
+      height: 24px;
     }
   }
 
